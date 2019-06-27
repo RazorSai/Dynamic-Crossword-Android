@@ -30,10 +30,6 @@ public class CustomGridView extends View {
 
     private Paint textNumberPaint = new Paint();
 
-    private Paint borderPaint = new Paint();
-
-    private boolean isClicked = false;
-
     private static Random sRand = new Random();
 
     private CrosswordCell[][] grid;
@@ -96,26 +92,14 @@ public class CustomGridView extends View {
 
     //Getters and Setters
 
-    public int getNumRows() {
-        return numRows;
-    }
-
     public void setNumRows(int numRows) {
         this.numRows = numRows;
         calculateDimensions();
     }
 
-    public int getNumColumns() {
-        return numColumns;
-    }
-
     public void setNumColumns(int numColumns) {
         this.numColumns = numColumns;
         calculateDimensions();
-    }
-
-    public CrosswordCell[][] getGrid() {
-        return grid;
     }
 
     public void setGrid(CrosswordCell[][] grid) {
@@ -253,52 +237,16 @@ public class CustomGridView extends View {
 
     }
 
-    public static char getRandomChar() {
-        // ASCII A = 65 - Z = 90
-        return (char) getRandomIntRange(65, 90);
-    }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
-        int x = (int) event.getX();
-
-        int y = (int) event.getY();
-
-        int col = x / cellWidth;
-
-        int row = y / cellHeight;
-
-        CrosswordCell crosswordCell = getGrid()[row][col];
 
         switch (event.getActionMasked()){
 
             case MotionEvent.ACTION_MOVE:
 
-                /*try {
-
-                    if (crosswordCell != null){
-
-                        crosswordCell.isSelected = true;
-
-                        Log.e("demo is ", "x : " + row + " y : " + col + " word : " + crosswordCell.character);
-
-                        invalidate();
-
-                    }
-                    else {
-
-                        Log.e("demo is ", "x : " + row + " y : " + col + " is null");
-
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }*/
-
                 break;
 
             case MotionEvent.ACTION_DOWN:
-                Log.e("Down", "Clicked");
                 break;
 
             default:
@@ -306,21 +254,6 @@ public class CustomGridView extends View {
 
 
         }
-
-//        if (crosswordCell != null){
-//
-//            crosswordCell.isSelected = true;
-//
-//            Log.e("demo is ", "x : " + row + " y : " + col + " word : " + crosswordCell.character);
-//
-//            invalidate();
-//
-//        }
-//        else {
-//
-//            Log.e("demo is ", "x : " + row + " y : " + col + " is null");
-//
-//        }
 
         return true;
     }
